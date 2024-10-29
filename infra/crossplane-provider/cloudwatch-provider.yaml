@@ -1,6 +1,6 @@
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
-  name: provider-aws-cloudwatch
+  name: provider-aws
 spec:
-  package: xpkg.upbound.io/upbound/provider-aws-cloudwatch:v1.16.0
+  package: xpkg.upbound.io/crossplane-contrib/provider-aws:v0.50.2
