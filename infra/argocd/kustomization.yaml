@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - helmrepository-argocd.yaml
   - helmrelease-argocd.yaml
+  - ns.yaml

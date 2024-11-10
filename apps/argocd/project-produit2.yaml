@@ -7,9 +7,13 @@ spec:
   
   # Source repositories that applications in this project can pull from
   sourceRepos:
-  - 'https://github.com/lyc-handson-aws/handson-topic10-*2*'
-  - '!https://github.com/lyc-handson-aws/handson-topic10-*1*'
-  
+  - 'https://github.com/lyc-handson-aws/handson-topic10-product2.git'
+  - 'https://github.com/lyc-handson-aws/handson-topic10-services.git'
+  - '!https://github.com/lyc-handson-aws/handson-topic10-product1.git'
+
+  #sourceNamespaces:
+  # - app2
+
   # Cluster and namespace destinations that applications in this project can deploy to
   destinations:
   - namespace: app2
@@ -23,7 +27,7 @@ spec:
     - p, proj:produit2:project-admin, applications, *, produit2/*, allow
     - p, proj:produit2:project-admin, repositories, *, produit2/*, allow
     - p, proj:produit2:project-admin, clusters, *, produit2/*, allow
-    - p, proj:produit2:project-admin, logs, get, *, allow
+    - p, proj:produit2:project-admin, logs, get, produit2/*, allow
   - name: project-reader
     description: Project read role
     policies:
@@ -40,3 +44,7 @@ spec:
     - p, proj:produit2:project-writer, repositories, *, produit2/*, allow
     - p, proj:produit2:project-writer, clusters, delete, produit2/*, deny
     - p, proj:produit2:project-writer, clusters, *, produit2/*, allow
+  clusterResourceWhitelist:
+  - group: 'apiextensions.crossplane.io'
+    kind: '*'
+

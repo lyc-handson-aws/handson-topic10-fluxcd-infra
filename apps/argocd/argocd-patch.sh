@@ -1,3 +1,8 @@
+#kubectl patch cm argocd-cmd-params-cm -n argocd --type merge -p '{"data":{"application.namespaces":"app1,app2"}}'
+#kubectl rollout restart -n argocd deployment argocd-argocd-topic10-server
+#kubectl rollout restart -n argocd statefulset argocd-argocd-topic10-application-controller
+
+
 # add 2 user
 kubectl patch configmap argocd-cm -n argocd --type merge -p '
 {

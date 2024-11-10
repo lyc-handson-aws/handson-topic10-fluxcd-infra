@@ -4,6 +4,8 @@ metadata:
   name: crossplane-conf
   namespace: flux-system
 spec:
+  dependsOn:
+   - name: crossplane-provider
   interval: 10m0s
   sourceRef:
     kind: GitRepository

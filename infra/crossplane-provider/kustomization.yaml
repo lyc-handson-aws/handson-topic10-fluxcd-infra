@@ -5,4 +5,3 @@ resources:
   - efs-provider.yaml
   - kms-provider.yaml
   - crossplane-aws-provider.yaml
-  - providerconfig.yaml
