@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: produit1
+spec:
+  description:  Project for product1
+  
+  # Source repositories that applications in this project can pull from
+  sourceRepos:
+  - 'https://github.com/lyc-handson-aws/handson-topic10-*1*'
+  - '!https://github.com/lyc-handson-aws/handson-topic10-*2*'
+
+  
+  # Cluster and namespace destinations that applications in this project can deploy to
+  destinations:
+  - namespace: app1
+    server: https://kubernetes.default.svc
+
+  # Roles and access permissions for this project  
+  roles:
+  - name: project-admin
+    description: Project admin role
+    policies:
+    - p, proj:produit1:project-admin, applications, *, produit1/*, allow
+    - p, proj:produit1:project-admin, repositories, *, produit1/*, allow
+    - p, proj:produit1:project-admin, clusters, *, produit1/*, allow
+    - p, proj:produit1:project-admin, logs, get, *, allow
+  - name: project-reader
+    description: Project read role
+    policies:
+    - p, proj:produit1:project-reader, applications, get, produit1/*, allow
+    - p, proj:produit1:project-reader, applications, sync, produit1/*, allow
+    - p, proj:produit1:project-reader, repositories, get, produit1/*, allow
+  - name: project-writer
+    description: Project write role
+    policies:
+    - p, proj:produit1:project-writer, applications, delete, produit1/*, deny
+    - p, proj:produit1:project-writer, applications, *, produit1/*, allow
+    - p, proj:produit1:project-writer, repositories, update, produit1/*, deny
+    - p, proj:produit1:project-writer, repositories, *, produit1/*, allow
+    - p, proj:produit1:project-writer, clusters, delete, produit1/*, deny
+    - p, proj:produit1:project-writer, clusters, *, produit1/*, allow

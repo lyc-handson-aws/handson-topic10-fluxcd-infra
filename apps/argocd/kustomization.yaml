@@ -1,0 +1,5 @@
+resources:
+ - project-produit2.yaml
+ - project-produit1.yaml
+ #- project-service1.yaml
+namespace: argocd

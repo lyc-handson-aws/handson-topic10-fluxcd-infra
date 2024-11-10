@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: service1
+  description:  Base project for service1
+  
+  # Source repositories that applications in this project can pull from
+  sourceRepos:
+  - 'https://github.com/lyc-handson-aws/handson-topic10-service1.git'
+  - '!https://github.com/lyc-handson-aws/handson-topic10-service2.git'
+
+  
+  # Cluster and namespace destinations that applications in this project can deploy to
+  destinations:
+  - namespace: base-service1
+    server: https://a-test-cluster.default.svc
+
+  # Roles and access permissions for this project  
+  roles:
+  - name: project-admin
+    description: Base project admin role
+    policies:
+    - p, proj:produit1:project-admin, applications, *, produit1/*, allow
+    - p, proj:produit1:project-admin, repositories, *, produit1/*, allow
+    - p, proj:produit1:project-admin, clusters, *, produit1/*, allow
+    - p, proj:produit1:project-admin, logs, get, *, allow
+  - name: project-actionner
+    description: Base project actionner role
+    policies:
+    - p, proj:produit1:project-writer, applications, delete, produit1/*, deny
+    - p, proj:produit1:project-writer, applications, *, produit1/*, allow
+    - p, proj:produit1:project-writer, repositories, update, produit1/*, deny
+    - p, proj:produit1:project-writer, repositories, *, produit1/*, allow
+    - p, proj:produit1:project-writer, clusters, delete, produit1/*, deny
+    - p, proj:produit1:project-writer, clusters, *, produit1/*, allow
+    - p, proj:produit1:project-admin, logs, get, *, allow
