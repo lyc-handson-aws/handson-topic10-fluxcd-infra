@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-rbac-cm
+data:
+  policy.csv: |
+    p, greader, applications, get, */*, allow
+    p, greader, projects, get, */*, allow
+    p, role:opsproject, applications, *, */*, allow
+    p, role:opsproject, repositories, *, */*, allow
+    p, role:opsproject, logs, get, *, allow
+    p, role:opsproject, clusters, *, */*, allow
+    p, role:opsproject, exec, *, */*, allow
+    p, role:opsproject, certificates, sync, */*, deny
+    p, role:opsproject, gpgkeys, sync, */*, deny
+    p, role:opsproject, accounts, sync, */*, deny
+    p, role:opsproject, extensions, sync, */*, deny
+    g, ops-project, role:opsproject
+    g, ops-infra, role:admin
