@@ -11,7 +11,7 @@ spec:
     branch: main
   secretRef:
     name: flux-system
-  url: https://github.com/lyc-handson-aws/handson-topic-fluxcd-infra.git
+  url: https://github.com/lyc-handson-aws/handson-topic10-fluxcd-infra.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
